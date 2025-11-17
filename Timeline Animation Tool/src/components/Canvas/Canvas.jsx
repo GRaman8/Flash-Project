@@ -67,6 +67,17 @@ const Canvas = () => {
       }
     });
 
+    // ADD THIS NEW HANDLER FOR TEXT EDITING
+    canvas.on('mouse:dblclick', (e) => {
+      if (e.target && e.target.type === 'text') {
+        const newText = prompt('Enter new text:', e.target.text);
+        if (newText !== null && newText !== '') {
+          e.target.set('text', newText);
+          canvas.renderAll();
+        }
+      }
+    });
+
     return () => {
       canvas.dispose();
     };

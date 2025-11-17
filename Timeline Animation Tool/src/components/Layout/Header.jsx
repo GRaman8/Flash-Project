@@ -9,7 +9,7 @@ const Header = () => {
           Timeline Animation Tool
         </Typography>
         <Typography variant="caption" sx={{ mr: 2 }}>
-          Phase 1 & 2: Canvas Editor + Timeline System
+          Canvas Editor + Timeline System
         </Typography>
       </Toolbar>
     </AppBar>
