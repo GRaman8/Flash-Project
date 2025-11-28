@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Paper, Box } from '@mui/material';
 import * as fabric from 'fabric';
+
 import { 
   useSelectedObject, 
   useFabricCanvas,
@@ -9,10 +10,12 @@ import {
   useKeyframes,
   useCanvasObjects 
 } from '../../store/hooks';
+
 import { 
   extractPropertiesFromFabricObject,
   findFabricObjectById 
 } from '../../utils/fabricHelpers';
+
 import { 
   findSurroundingKeyframes, 
   interpolateProperties, 

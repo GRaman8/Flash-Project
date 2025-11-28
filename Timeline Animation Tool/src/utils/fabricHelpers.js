@@ -2,7 +2,8 @@ import * as fabric from 'fabric';
 
 /**
  * Create a new Fabric.js object based on type
- */
+*/
+
 export const createFabricObject = (type, id) => {
   const baseProps = {
     id,
@@ -40,8 +41,10 @@ export const createFabricObject = (type, id) => {
 
 /**
  * Extract properties from a Fabric.js object
- */
+*/
+
 export const extractPropertiesFromFabricObject = (fabricObject) => {
+  
   if (!fabricObject) return null;
 
   return {

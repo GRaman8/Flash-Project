@@ -17,8 +17,7 @@ export const keyframesState = atom({
 // Selected object state
 export const selectedObjectState = atom({
   key: 'selectedObjectState',
-  default: null, // object id
-});
+  default: null, // object id});
 
 // Timeline state
 export const currentTimeState = atom({
