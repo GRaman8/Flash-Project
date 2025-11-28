@@ -1,21 +1,13 @@
 import React from 'react';
-
-import { 
-  Box, 
-  IconButton, 
-  Divider, 
-  Tooltip, 
-  Paper 
-} from '@mui/material';
-
 import {
-  Crop32 as RectangleIcon,
-  Circle as CircleIcon,
-  TextFields as TextIcon,
-  Delete as DeleteIcon,
-  KeyboardArrowUp as ArrowUpIcon,
-  KeyboardArrowDown as ArrowDownIcon,
-} from '@mui/icons-material';
+  RectangleStackIcon,
+  CircleStackIcon,
+  PencilIcon,
+  TrashIcon,
+  ArrowUpIcon,
+  ArrowDownIcon,
+} from '@heroicons/react/24/outline';
+
 import { useSelectedObject, useFabricCanvas, useCanvasObjects, useKeyframes } from '../../store/hooks';
 import { createFabricObject } from '../../utils/fabricHelpers';
 
@@ -76,70 +68,60 @@ const Toolbar = () => {
   };
 
   return (
-    <Paper 
-      sx={{ 
-        width: 80, 
-        display: 'flex', 
-        flexDirection: 'column', 
-        p: 1, 
-        gap: 1,
-        borderRadius: 0
-      }}
-    >
-      <Tooltip title="Add Rectangle" placement="right">
-        <IconButton onClick={() => addElement('rectangle')} color="primary">
-          <RectangleIcon />
-        </IconButton>
-      </Tooltip>
+    <div className="w-20 flex flex-col bg-white border-r border-gray-300 shadow-md">
+      <button 
+        onClick={() => addElement('rectangle')}
+        className="p-4 text-blue-700 hover:bg-gray-100 transition-colors border-b border-gray-200"
+        title="Add Rectangle"
+      >
+        <RectangleStackIcon className="w-6 h-6" />
+      </button>
       
-      <Tooltip title="Add Circle" placement="right">
-        <IconButton onClick={() => addElement('circle')} color="primary">
-          <CircleIcon />
-        </IconButton>
-      </Tooltip>
+      <button 
+        onClick={() => addElement('circle')}
+        className="p-4 text-blue-700 hover:bg-gray-100 transition-colors border-b border-gray-200"
+        title="Add Circle"
+      >
+        <CircleStackIcon className="w-6 h-6" />
+      </button>
       
-      <Tooltip title="Add Text" placement="right">
-        <IconButton onClick={() => addElement('text')} color="primary">
-          <TextIcon />
-        </IconButton>
-      </Tooltip>
+      <button 
+        onClick={() => addElement('text')}
+        className="p-4 text-blue-700 hover:bg-gray-100 transition-colors border-b border-gray-200"
+        title="Add Text"
+      >
+        <PencilIcon className="w-6 h-6" />
+      </button>
       
-      <Divider sx={{ my: 1 }} />
+      <div className="border-b border-gray-300 my-1" />
       
-      <Tooltip title="Delete" placement="right">
-        <span>
-          <IconButton 
-            onClick={deleteObject} 
-            disabled={!selectedObject}
-            color="error"
-          >
-            <DeleteIcon />
-          </IconButton>
-        </span>
-      </Tooltip>
+      <button 
+        onClick={deleteObject}
+        disabled={!selectedObject}
+        className="p-4 text-gray-600 hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed transition-colors border-b border-gray-200"
+        title="Delete"
+      >
+        <TrashIcon className="w-6 h-6" />
+      </button>
       
-      <Tooltip title="Bring Forward" placement="right">
-        <span>
-          <IconButton 
-            onClick={() => moveLayer('up')} 
-            disabled={!selectedObject}
-          >
-            <ArrowUpIcon />
-          </IconButton>
-        </span>
-      </Tooltip>
+      <button 
+        onClick={() => moveLayer('up')}
+        disabled={!selectedObject}
+        className="p-4 text-gray-600 hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed transition-colors border-b border-gray-200"
+        title="Bring Forward"
+      >
+        <ArrowUpIcon className="w-6 h-6" />
+      </button>
       
-      <Tooltip title="Send Backward" placement="right">
-        <span>
-          <IconButton 
-            onClick={() => moveLayer('down')} 
-            disabled={!selectedObject}
-          >
-            <ArrowDownIcon />
-          </IconButton>
-        </span>
-      </Tooltip>
-    </Paper>
+      <button 
+        onClick={() => moveLayer('down')}
+        disabled={!selectedObject}
+        className="p-4 text-gray-600 hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+        title="Send Backward"
+      >
+        <ArrowDownIcon className="w-6 h-6" />
+      </button>
+    </div>
   );
 };
 

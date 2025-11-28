@@ -1,5 +1,4 @@
 import React from 'react';
-import { Box } from '@mui/material';
 import Header from './Header';
 import Toolbar from '../Toolbar/Toolbar';
 import Canvas from '../Canvas/Canvas';
@@ -8,30 +7,23 @@ import PropertiesPanel from '../PropertiesPanel/PropertiesPanel';
 
 const MainLayout = () => {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+    <div className="flex flex-col h-screen bg-white">
       <Header />
       
-      <Box sx={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+      <div className="flex flex-1 overflow-hidden">
         {/* Left Toolbar */}
         <Toolbar />
         
         {/* Main Content Area */}
-        <Box sx={{ 
-          flex: 1, 
-          display: 'flex', 
-          flexDirection: 'column', 
-          p: 2, 
-          overflow: 'auto',
-          bgcolor: '#f5f5f5'
-        }}>
+        <div className="flex-1 flex flex-col overflow-hidden bg-gray-100">
           <Canvas />
           <Timeline />
-        </Box>
+        </div>
         
         {/* Right Properties Panel */}
         <PropertiesPanel />
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 

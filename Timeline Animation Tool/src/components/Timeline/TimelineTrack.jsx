@@ -1,5 +1,4 @@
 import React from 'react';
-import { Box, Typography, Paper } from '@mui/material';
 import { useSelectedObject, useDuration } from '../../store/hooks';
 
 const TimelineTrack = ({ object, keyframes }) => {
@@ -8,64 +7,40 @@ const TimelineTrack = ({ object, keyframes }) => {
   const isSelected = selectedObject === object.id;
 
   return (
-    <Paper 
-      variant="outlined" 
-      sx={{ 
-        p: 1, 
-        mb: 1,
-        bgcolor: isSelected ? 'action.selected' : 'background.paper',
-        transition: 'background-color 0.2s',
-      }}
+    <div 
+      className={`px-6 py-3 border-b border-gray-200 text-xs transition-colors ${
+        isSelected ? 'bg-blue-100' : 'bg-white hover:bg-gray-50'
+      }`}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        <Typography 
-          variant="body2" 
-          sx={{ minWidth: 100, fontWeight: isSelected ? 600 : 400 }}
+      <div className="flex items-center gap-3">
+        <p 
+          className={`w-28 truncate text-sm ${
+            isSelected ? 'text-blue-900 font-semibold' : 'text-gray-700 font-medium'
+          }`}
         >
           {object.name}
-        </Typography>
+        </p>
         
-        <Box sx={{ 
-          flex: 1, 
-          position: 'relative', 
-          height: 30, 
-          bgcolor: '#f5f5f5', 
-          borderRadius: 1,
-          border: '1px solid #e0e0e0'
-        }}>
+        <div className="flex-1 relative h-8 bg-gray-200 rounded border border-gray-300">
           {keyframes.map((kf, idx) => (
-            <Box
+            <div
               key={idx}
-              sx={{
-                position: 'absolute',
+              className="absolute top-1/2 w-3 h-3 bg-blue-700 rounded-full border border-white cursor-pointer transition-all hover:w-4 hover:h-4 -translate-x-1/2 -translate-y-1/2 shadow-sm"
+              style={{
                 left: `${(kf.time / duration) * 100}%`,
-                top: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: 8,
-                height: 8,
-                bgcolor: 'primary.main',
-                borderRadius: '50%',
-                border: '2px solid white',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                '&:hover': {
-                  width: 12,
-                  height: 12,
-                  bgcolor: 'primary.dark',
-                }
               }}
+              title={`Keyframe at ${kf.time.toFixed(2)}s`}
             />
           ))}
-        </Box>
+        </div>
         
-        <Typography 
-          variant="caption" 
-          sx={{ minWidth: 80, textAlign: 'right', color: 'text.secondary' }}
+        <p 
+          className="w-20 text-right text-xs text-gray-600 font-medium"
         >
-          {keyframes.length} keyframe{keyframes.length !== 1 ? 's' : ''}
-        </Typography>
-      </Box>
-    </Paper>
+          {keyframes.length} keyframes
+        </p>
+      </div>
+    </div>
   );
 };
 

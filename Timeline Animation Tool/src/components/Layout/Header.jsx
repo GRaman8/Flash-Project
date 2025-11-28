@@ -1,18 +1,17 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Box } from '@mui/material';
 
 const Header = () => {
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+    <header className="bg-blue-700 text-white shadow-md">
+      <div className="px-8 py-4 flex items-center justify-between">
+        <h1 className="text-lg font-semibold">
           Timeline Animation Tool
-        </Typography>
-        <Typography variant="caption" sx={{ mr: 2 }}>
-          Canvas Editor + Timeline System
-        </Typography>
-      </Toolbar>
-    </AppBar>
+        </h1>
+        <p className="text-sm text-blue-100">
+          Canvas Editor + Timeline System + tailwindcss
+        </p>
+      </div>
+    </header>
   );
 };
 

@@ -1,10 +1,9 @@
 import React, { useRef, useCallback } from 'react';
-import { Box, IconButton, Typography, Button } from '@mui/material';
-import { 
-  PlayArrow, 
-  Pause, 
-  Stop 
-} from '@mui/icons-material';
+import {
+  PlayIcon,
+  PauseIcon,
+  StopIcon,
+} from '@heroicons/react/24/solid';
 import { 
   useIsPlaying, 
   useCurrentTime, 
@@ -105,40 +104,45 @@ const PlaybackControls = () => {
   }, []);
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-      <IconButton 
+    <div className="flex items-center gap-2 px-6 py-3 bg-gray-50 border-b border-gray-300">
+      <button 
         onClick={handlePlay} 
-        disabled={isPlaying} 
-        color="primary"
+        disabled={isPlaying}
+        className="p-2 text-blue-700 hover:bg-gray-200 disabled:opacity-30 disabled:cursor-not-allowed rounded transition text-xs"
+        title="Play"
       >
-        <PlayArrow />
-      </IconButton>
+        <PlayIcon className="w-5 h-5" />
+      </button>
       
-      <IconButton 
+      <button 
         onClick={handlePause} 
         disabled={!isPlaying}
+        className="p-2 text-blue-700 hover:bg-gray-200 disabled:opacity-30 disabled:cursor-not-allowed rounded transition text-xs"
+        title="Pause"
       >
-        <Pause />
-      </IconButton>
+        <PauseIcon className="w-5 h-5" />
+      </button>
       
-      <IconButton onClick={handleStop}>
-        <Stop />
-      </IconButton>
+      <button 
+        onClick={handleStop}
+        className="p-2 text-blue-700 hover:bg-gray-200 rounded transition text-xs"
+        title="Stop"
+      >
+        <StopIcon className="w-5 h-5" />
+      </button>
       
-      <Typography variant="body2" sx={{ ml: 2, minWidth: 120 }}>
+      <span className="text-xs ml-3 min-w-24 text-gray-700 font-medium">
         {currentTime.toFixed(2)}s / {duration.toFixed(1)}s
-      </Typography>
+      </span>
       
-      <Button 
-        variant="contained" 
-        size="small" 
+      <button 
         onClick={handleAddKeyframe}
         disabled={!selectedObject}
-        sx={{ ml: 'auto' }}
+        className="ml-auto px-4 py-2 bg-blue-600 text-white text-xs font-semibold rounded hover:bg-blue-700 disabled:opacity-30 disabled:cursor-not-allowed transition"
       >
-        Add Keyframe
-      </Button>
-    </Box>
+        ADD KEYFRAME
+      </button>
+    </div>
   );
 };
 

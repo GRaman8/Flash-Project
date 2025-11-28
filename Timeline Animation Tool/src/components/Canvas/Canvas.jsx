@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import { Paper, Box } from '@mui/material';
 import * as fabric from 'fabric';
 
 import { 
@@ -116,11 +115,11 @@ const Canvas = () => {
   }, [currentTime, keyframes, canvasObjects, fabricCanvas]);
 
   return (
-    <Box sx={{ mb: 2, display: 'flex', justifyContent: 'center' }}>
-      <Paper elevation={3} sx={{ display: 'inline-block' }}>
+    <div className="flex justify-center items-center flex-1 p-6 bg-gray-100">
+      <div className="bg-white border border-gray-300 shadow">
         <canvas ref={canvasRef} />
-      </Paper>
-    </Box>
+      </div>
+    </div>
   );
 };
 

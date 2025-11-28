@@ -1,14 +1,5 @@
 import React from 'react';
 import { 
-  Box, 
-  Drawer, 
-  Typography, 
-  TextField, 
-  Slider, 
-  Divider,
-  Paper
-} from '@mui/material';
-import { 
   useSelectedObject, 
   useSelectedObjectProperties,
   useSelectedObjectDetails 
@@ -19,144 +10,116 @@ const PropertiesPanel = () => {
   const [properties] = useSelectedObjectProperties();
   const selectedDetails = useSelectedObjectDetails();
 
-  const drawerWidth = 300;
-
   return (
-    <Drawer
-      variant="permanent"
-      anchor="right"
-      sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        '& .MuiDrawer-paper': {
-          width: drawerWidth,
-          boxSizing: 'border-box',
-          position: 'relative',
-          height: '100%',
-        },
-      }}
-    >
-      <Box sx={{ p: 2, height: '100%', overflow: 'auto' }}>
-        <Typography variant="h6" gutterBottom>
+    <div className="w-80 flex-shrink-0 h-full border-l border-gray-300 bg-white flex flex-col shadow-lg">
+      <div className="px-6 py-4 border-b border-gray-300 bg-gray-50">
+        <h2 className="text-base font-semibold text-gray-800">
           Properties
-        </Typography>
-        
+        </h2>
+      </div>
+      <div className="flex-1 overflow-auto p-5">
         {selectedObject && selectedDetails ? (
-          <Box>
-            <Paper 
-              variant="outlined" 
-              sx={{ p: 1.5, mb: 2, bgcolor: 'primary.light', color: 'primary.contrastText' }}
+          <div>
+            <div 
+              className="p-4 mb-5 bg-blue-600 text-white border border-blue-700 rounded text-sm"
             >
-              <Typography variant="body2" fontWeight={600}>
+              <p className="font-semibold text-sm">
                 {selectedDetails.name}
-              </Typography>
-              <Typography variant="caption">
+              </p>
+              <p className="text-xs text-blue-100 mt-2">
                 {selectedDetails.type}
-              </Typography>
-            </Paper>
+              </p>
+            </div>
 
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              <TextField
-                label="X Position"
-                type="number"
-                value={Math.round(properties.x)}
-                size="small"
-                disabled
-                fullWidth
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
-              
-              <TextField
-                label="Y Position"
-                type="number"
-                value={Math.round(properties.y)}
-                size="small"
-                disabled
-                fullWidth
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
-              
-              <TextField
-                label="Scale X"
-                type="number"
-                value={properties.scaleX.toFixed(2)}
-                size="small"
-                disabled
-                fullWidth
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
-              
-              <TextField
-                label="Scale Y"
-                type="number"
-                value={properties.scaleY.toFixed(2)}
-                size="small"
-                disabled
-                fullWidth
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
-              
-              <TextField
-                label="Rotation"
-                type="number"
-                value={Math.round(properties.rotation)}
-                size="small"
-                disabled
-                fullWidth
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
-              
-              <Box>
-                <Typography variant="body2" gutterBottom>
-                  Opacity: {(properties.opacity * 100).toFixed(0)}%
-                </Typography>
-                <Slider
-                  value={properties.opacity}
-                  min={0}
-                  max={1}
-                  step={0.01}
+            <div className="space-y-4">
+              <div>
+                <label className="text-xs font-medium text-gray-700 block mb-1">X Position</label>
+                <input
+                  type="number"
+                  value={Math.round(properties.x)}
                   disabled
-                  valueLabelDisplay="auto"
-                  valueLabelFormat={(value) => `${(value * 100).toFixed(0)}%`}
+                  readOnly
+                  className="w-full px-3 py-2 text-sm bg-gray-100 border border-gray-300 rounded text-gray-600 cursor-not-allowed focus:outline-none"
                 />
-              </Box>
-            </Box>
+              </div>
+              
+              <div>
+                <label className="text-xs font-medium text-gray-700 block mb-1">Y Position</label>
+                <input
+                  type="number"
+                  value={Math.round(properties.y)}
+                  disabled
+                  readOnly
+                  className="w-full px-3 py-2 text-sm bg-gray-100 border border-gray-300 rounded text-gray-600 cursor-not-allowed focus:outline-none"
+                />
+              </div>
+              
+              <div>
+                <label className="text-xs font-medium text-gray-700 block mb-1">Scale X</label>
+                <input
+                  type="number"
+                  value={properties.scaleX.toFixed(2)}
+                  disabled
+                  readOnly
+                  className="w-full px-3 py-2 text-sm bg-gray-100 border border-gray-300 rounded text-gray-600 cursor-not-allowed focus:outline-none"
+                />
+              </div>
+              
+              <div>
+                <label className="text-xs font-medium text-gray-700 block mb-1">Scale Y</label>
+                <input
+                  type="number"
+                  value={properties.scaleY.toFixed(2)}
+                  disabled
+                  readOnly
+                  className="w-full px-3 py-2 text-sm bg-gray-100 border border-gray-300 rounded text-gray-600 cursor-not-allowed focus:outline-none"
+                />
+              </div>
+              
+              <div>
+                <label className="text-xs font-medium text-gray-700 block mb-1">Rotation</label>
+                <input
+                  type="number"
+                  value={Math.round(properties.rotation)}
+                  disabled
+                  readOnly
+                  className="w-full px-3 py-2 text-sm bg-gray-100 border border-gray-300 rounded text-gray-600 cursor-not-allowed focus:outline-none"
+                />
+              </div>
+              
+              <div>
+                <p className="text-xs font-medium text-gray-700 mb-2">
+                  Opacity: {(properties.opacity * 100).toFixed(0)}%
+                </p>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value={properties.opacity}
+                  disabled
+                  className="w-full cursor-not-allowed opacity-60 accent-blue-600 h-2"
+                />
+              </div>
+            </div>
             
-            <Divider sx={{ my: 2 }} />
+            <hr className="my-5 border-gray-300" />
             
-            <Paper 
-              variant="outlined" 
-              sx={{ p: 2, bgcolor: 'info.light', color: 'info.contrastText' }}
+            <div 
+              className="p-4 bg-cyan-600 text-white border border-cyan-700 rounded text-xs leading-relaxed"
             >
-              <Typography variant="body2" sx={{ lineHeight: 1.6 }}>
-                💡 <strong>Tip:</strong> Modify the object on the stage by dragging, 
-                resizing, or rotating it. Then click "Add Keyframe" to record its 
-                state at the current time.
-              </Typography>
-            </Paper>
-          </Box>
+              💡 <strong>Tip:</strong> Modify the object on the stage by dragging, resizing, or rotating it. Then click "Add Keyframe" to record its state at the current time.
+            </div>
+          </div>
         ) : (
-          <Paper 
-            variant="outlined" 
-            sx={{ p: 3, textAlign: 'center', bgcolor: 'grey.50' }}
+          <div 
+            className="p-5 text-center py-12 bg-gray-50 border border-gray-300 rounded text-gray-600 text-xs"
           >
-            <Typography variant="body2" color="text.secondary">
-              Select an object on the stage to view and edit its properties
-            </Typography>
-          </Paper>
+            Select an object on the stage to view and edit its properties
+          </div>
         )}
-      </Box>
-    </Drawer>
+      </div>
+    </div>
   );
 };
 

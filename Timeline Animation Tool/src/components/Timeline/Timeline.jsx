@@ -1,5 +1,4 @@
 import React from 'react';
-import { Paper, Typography, Box } from '@mui/material';
 import { useCanvasObjects, useKeyframes } from '../../store/hooks';
 import PlaybackControls from './PlaybackControls';
 import TimelineScrubber from './TimelineScrubber';
@@ -10,25 +9,23 @@ const Timeline = () => {
   const [keyframes] = useKeyframes();
 
   return (
-    <Paper sx={{ p: 2 }}>
-      <Typography variant="h6" gutterBottom>
-        Timeline
-      </Typography>
+    <div className="bg-white border-t border-gray-300 overflow-hidden flex flex-col">
+      <div className="px-6 py-4 border-b border-gray-300 bg-gray-50">
+        <h2 className="text-base font-semibold text-gray-800">
+          Timeline
+        </h2>
+      </div>
       
       <PlaybackControls />
       <TimelineScrubber />
       
-      <Box sx={{ maxHeight: 250, overflowY: 'auto' }}>
+      <div className="flex-1 overflow-y-auto bg-white">
         {canvasObjects.length === 0 ? (
-          <Box sx={{ 
-            textAlign: 'center', 
-            py: 4, 
-            color: 'text.secondary' 
-          }}>
-            <Typography variant="body2">
+          <div className="text-center py-8 text-gray-500 text-sm">
+            <p>
               Add elements to the stage to see timeline tracks
-            </Typography>
-          </Box>
+            </p>
+          </div>
         ) : (
           canvasObjects.map(obj => (
             <TimelineTrack
@@ -38,8 +35,8 @@ const Timeline = () => {
             />
           ))
         )}
-      </Box>
-    </Paper>
+      </div>
+    </div>
   );
 };
 
